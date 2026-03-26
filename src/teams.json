@@ -1,0 +1,64 @@
+{
+  "teams": [
+    {
+      "name": "Core",
+      "description": "The core team members that contribute to various projects within the organization.",
+      "members": [
+        "omnimistic",
+        "ho-cyber",
+        "natyavidhan",
+        "myrachane",
+        "atshayk",
+        "hemlox",
+        "divyanshudhruv"
+      ]
+    },
+    {
+      "name": "Tech Leads",
+      "description": "Directs Tech projects. Reviews, and approves some Pull Requests.",
+      "members": ["omnimistic"]
+    },
+    {
+      "name": "Website Leads",
+      "description": "Manages website repositories. Has full rights to merge code in web projects and approve Pull Requests.",
+      "members": ["divyanshudhruv", "PSB1234"]
+    },
+
+    {
+      "name": "AI Leads",
+      "description": "Oversees all AI repositories. Has full rights to manage AI projects, merge code, and approve Pull Requests.",
+      "members": ["natyavidhan", "ho-cyber"]
+    },
+    {
+      "name": "Bot Leads",
+      "description": "Directs bot development. Reviews, approves, and merges Pull Requests from Bot Developers.",
+      "members": ["atshayk"]
+    },
+
+    {
+      "name": "ML Engineers",
+      "description": "Contributes to machine learning and AI repositories.",
+      "members": ["vaemaski", "RkCode2025", "myrachane", "hemlox"]
+    },
+    {
+      "name": "Backend Engineers",
+      "description": "Contributes to website and backend projects.",
+      "members": ["Spandan-Mishra", "X3r0Day"]
+    },
+    {
+      "name": "Bot Developers",
+      "description": "Contributes to bot repositories.",
+      "members": ["theNeonTerminal"]
+    },
+    {
+      "name": "Frontend Engineers",
+      "description": "Contributes to website and frontend projects.",
+      "members": ["siddbhatt18"]
+    },
+    {
+      "name": "Others",
+      "description": "Organization members.",
+      "members": ["datavorous"]
+    }
+  ]
+}

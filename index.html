@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/src/logo.ico">
+    <title>OpenDih | Collective Persona Research</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <nav>
+      <a href="https://github.com/OpenDih" target="_blank" class="nav-logo serif">OpenDih</a>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="#research">Research</a>
+          <a href="#projects">Projects</a>
+          <a href="#blogs">Blogs</a>
+        </div>
+        <a href="mailto:teamopendih@gmail.com" class="contact-btn">Contact Us</a>
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          aria-label="Toggle theme"
+          onclick="toggleTheme()"
+        >
+          <svg
+            class="icon-sun"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="4" />
+            <line x1="12" y1="2" x2="12" y2="4" />
+            <line x1="12" y1="20" x2="12" y2="22" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="2" y1="12" x2="4" y2="12" />
+            <line x1="20" y1="12" x2="22" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+          <svg
+            class="icon-moon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <div class="container">
+      <header class="hero">
+        <h1>Encoding the technical intuition of a thousand developers.</h1>
+        <p>
+          OpenDih is a research collective building collective-persona
+          intelligence models.
+        </p>
+        <button class="team-btn" onclick="openTeam()">Meet the Team</button>
+      </header>
+
+      <main>
+        <section id="research">
+          <h2>Research Focus</h2>
+          <p>
+            Standard language models are trained on the broad internet,
+            resulting in a sterile, neutralized output. Our research diverges by
+            targeting a specific, highly technical demographic: the builders,
+            hackers, and architects.
+          </p>
+          <p>
+            By extracting and refining the raw discourse of specific developer
+            communities, we map their collective epistemic character. We
+            fine-tune base substrates to not only write code, but to solve
+            problems with the distinct logic, grit, and intuition of the
+            engineers who trained it.
+          </p>
+
+          <table>
+            <tr>
+              <td>Data Source</td>
+              <td>Anonymized Discord engineering discourse</td>
+            </tr>
+            <tr>
+              <td>Pipeline</td>
+              <td>DiscordChatExporter &rarr; Automated heuristic filtering</td>
+            </tr>
+            <tr>
+              <td>Base Substrate</td>
+              <td>artifish/llama3.2-uncensored</td>
+            </tr>
+          </table>
+        </section>
+
+        <section id="projects">
+          <h2>Projects</h2>
+          <p>Deployments of our synthesized developer intelligence and related assets.</p>
+
+          <div class="card-grid">
+            <a
+              href="https://github.com/OpenDih/ManGPT"
+              target="_blank"
+              class="model-card"
+            >
+              <span class="card-title">ManGPT <span>&rarr;</span></span>
+              <p class="card-desc">
+                Our primary reasoning engine. A high-parameter model distilled
+                from community logic.
+              </p>
+            </a>
+            <a
+              href="https://github.com/OpenDih/Manbot"
+              target="_blank"
+              class="model-card"
+            >
+              <span class="card-title">ManBot <span>&rarr;</span></span>
+              <p class="card-desc">
+                The deployment interface. Designed to integrate the collective
+                model back into Discord environments.
+              </p>
+            </a>
+          </div>
+        </section>
+
+        <section id="blogs">
+          <div class="blog-header-row">
+            <h2>Blogs</h2>
+            <button class="sort-btn" id="sort-btn" onclick="toggleSort()">
+              Newest First
+            </button>
+          </div>
+
+          <div id="blog-container" class="blog-list"></div>
+        </section>
+      </main>
+
+      <footer>
+        <span>&copy; 2026 OpenDih Research Collective.</span>
+      </footer>
+    </div>
+
+    <div id="modal-overlay" onclick="handleOverlayClick(event)">
+      <button id="close-modal" onclick="closeModal()">&#10005;</button>
+      <div id="modal-window" onclick="event.stopPropagation()">
+        <div id="modal-content"></div>
+      </div>
+    </div>
+  </body>
+</html>
