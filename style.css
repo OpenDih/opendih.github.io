@@ -4,7 +4,7 @@
   --text-main: #1c1b1a;
   --text-muted: #575653;
   --border-color: #e6e4df;
-  --accent: #d96c4a;
+  --accent: #001DDB;
   --nav-bg: rgba(253, 252, 249, 0.95);
   --modal-bg: rgba(253, 252, 249, 0.98);
   --hover-bg: #f0eee9;
@@ -14,13 +14,14 @@
   --scrollbar-track: transparent;
 }
 
+/*#d96c4a*/
 [data-theme="dark"] {
   --bg-color: #111110;
   --surface-color: #1a1917;
   --text-main: #f0ede8;
   --text-muted: #8a8680;
   --border-color: #2a2826;
-  --accent: #e07a5a;
+  --accent: #331DeB;
   --nav-bg: rgba(17, 17, 16, 0.95);
   --modal-bg: rgba(17, 17, 16, 0.98);
   --hover-bg: #222120;
