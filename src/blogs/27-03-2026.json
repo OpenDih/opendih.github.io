@@ -3,5 +3,5 @@
   "excerpt": "Advancements in the project development.",
   "by": "Raptor0G",
   "role": "Writer, Programmer",
-  "content": "**Opendih Dev Log — March 27, 2026**\n\n*A new writer for the blog and articles has been appointed — Ammey, known as Raptor in the community.*\n\nThe team met today to discuss training strategies for the model. We aligned on a fine-tuning approach for the 3B model and assigned responsibility for that work. Minor website issues were also resolved.\n\n**Reminder:** The opt-out period for data consent ends tomorrow night, March 28th. If you do not wish for your data to be used in training Opendih's model, submit the form before the deadline.\n\n*— Ammey (Raptor)*"
+  "content": "<p><strong>Opendih Dev Log — March 27, 2026</strong></p><p><em>A new writer for the blog and articles has been appointed — Ammey, known as Raptor in the community.</em></p><p>The team met today to discuss training strategies for the model. We aligned on a fine-tuning approach for the 3B model and assigned responsibility for that work. Minor website issues were also resolved.</p><p><strong>Reminder:</strong> The opt-out period for data consent ends tomorrow night, March 28th. If you do not wish for your data to be used in training Opendih's model, submit the form before the deadline.</p><p><em>— Ammey (Raptor)</em></p>"
 }
