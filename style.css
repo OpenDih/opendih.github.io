@@ -87,7 +87,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 40px;
+  padding: 10px 70px;
   background: var(--nav-bg);
   backdrop-filter: blur(8px);
   z-index: 100;
@@ -114,7 +114,7 @@ nav::after {
 }
 
 .nav-logo {
-  font-size: 2rem;
+  font-size: 1.7rem;
   text-decoration: none;
   color: inherit;
   transition: color 0.2s;
@@ -124,7 +124,7 @@ nav::after {
 }
 
 .nav-logo-img {
-  height: 6rem;
+  height: 4.8rem;
   width: auto;
 }
 
@@ -143,7 +143,7 @@ nav::after {
 [data-theme="dark"] .nav-logo-dark {
   display: inline;
   filter: invert(1);
-  height: 6rem;
+  height: 4.8rem;
   margin-right: -1rem;
 }
 
@@ -154,16 +154,16 @@ nav::after {
 .nav-right {
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: 28px;
 }
 
 .nav-links {
   display: flex;
-  gap: 40px;
+  gap: 28px;
 }
 
 .nav-links a {
-  font-size: 1.05rem;
+  font-size: 0.98rem;
   color: var(--text-muted);
   text-decoration: none;
   transition: color 0.2s, transform 0.2s, filter 0.2s;
@@ -181,8 +181,8 @@ nav::after {
   background: transparent;
   color: var(--accent);
   text-decoration: none;
-  font-size: 1rem;
-  padding: 12px 22px;
+  font-size: 0.92rem;
+  padding: 10px 18px;
   border-radius: 100px;
   border: 2px solid var(--accent);
   transition: color 0.4s ease, border-radius 0.4s ease, background-color 0.4s ease, transform 0.2s, filter 0.2s;
@@ -220,8 +220,8 @@ nav::after {
   background: none;
   border: 1px solid var(--border-color);
   border-radius: 50%;
-  width: 46px;
-  height: 46px;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -240,8 +240,8 @@ nav::after {
 }
 
 .theme-toggle svg {
-  width: 22px;
-  height: 22px;
+  width: 19px;
+  height: 19px;
   transition: opacity 0.2s, transform 0.3s;
 }
 
