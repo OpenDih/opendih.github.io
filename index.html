@@ -24,9 +24,9 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,400&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css?v=7" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <script src="script.js" defer></script>
+    <script src="script.js?v=3" defer></script>
   </head>
   <body>
     <div class="torch-overlay" id="torch-overlay"></div>
@@ -143,26 +143,23 @@
                 from community logic.
               </p>
             </a>
-            <a
-              href="https://github.com/OpenDih/Manbot"
-              target="_blank"
+            <div
               class="model-card"
+              onclick="openManBot()"
+              style="cursor: pointer;"
             >
               <span class="card-title">ManBot <span>&rarr;</span></span>
               <p class="card-desc">
                 The deployment interface. Designed to integrate the collective
                 model back into Discord environments.
               </p>
-            </a>
+            </div>
           </div>
         </section>
 
         <section id="blogs">
           <div class="blog-header-row">
             <h2>Blogs</h2>
-            <button class="sort-btn" id="sort-btn" onclick="toggleSort()">
-              Newest First
-            </button>
           </div>
 
           <div id="blog-container" class="blog-list"></div>

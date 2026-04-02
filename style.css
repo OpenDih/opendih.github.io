@@ -4,7 +4,7 @@
   --text-main: #1c1b1a;
   --text-muted: #575653;
   --border-color: #e6e4df;
-  --accent: #001ddb;
+  --accent: #a020f0;
   --nav-bg: rgba(253, 252, 249, 0.95);
   --modal-bg: rgba(253, 252, 249, 0.98);
   --hover-bg: #f0eee9;
@@ -12,6 +12,7 @@
   --scrollbar-thumb: #d1cdc7;
   --scrollbar-thumb-hover: #b5b1a9;
   --scrollbar-track: transparent;
+  --grid-color: rgba(0, 0, 0, 0.045);
 }
 
 /*#d96c4a*/
@@ -21,13 +22,14 @@
   --text-main: #f0ede8;
   --text-muted: #8a8680;
   --border-color: #2a2826;
-  --accent: #6677e9;
+  --accent: #b44ff0;
   --nav-bg: rgba(17, 17, 16, 0.95);
   --modal-bg: rgba(17, 17, 16, 0.98);
   --hover-bg: #222120;
   --shadow: rgba(0, 0, 0, 0.2);
   --scrollbar-thumb: #3a3836;
   --scrollbar-thumb-hover: #4a4846;
+  --grid-color: rgba(255, 255, 255, 0.04);
 }
 
 ::-webkit-scrollbar {
@@ -56,9 +58,19 @@ html {
   scroll-behavior: smooth;
 }
 
+@keyframes gridScroll {
+  from { background-position: 0 0; }
+  to   { background-position: 40px 0; }
+}
+
 body {
   margin: 0;
   background-color: var(--bg-color);
+  background-image:
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: gridScroll 4s linear infinite;
   color: var(--text-main);
   font-family: "Inter", sans-serif;
   font-size: 1.1rem;
@@ -85,32 +97,11 @@ nav {
   top: 0;
   width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 20px 40px;
-  background: var(--nav-bg);
-  backdrop-filter: blur(8px);
+  background: transparent;
   z-index: 100;
-  border-bottom: none;
   transition: background 0.3s ease;
-}
-
-nav::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(160, 32, 240, 0.3) 20%,
-    rgba(160, 32, 240, 0.8) 50%,
-    rgba(160, 32, 240, 0.3) 80%,
-    transparent
-  );
 }
 
 .nav-logo {
@@ -152,9 +143,20 @@ nav::after {
 }
 
 .nav-right {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: 28px;
+  background: var(--nav-bg);
+  backdrop-filter: blur(12px);
+  border-radius: 100px;
+  border: 1px solid var(--border-color);
+  padding: 8px 10px 8px 24px;
+  box-shadow: 0 4px 20px var(--shadow);
+  transition: background 0.3s ease, border-color 0.3s ease;
+  white-space: nowrap;
 }
 
 .nav-links {
@@ -421,8 +423,10 @@ tr:last-child td {
   transform: scaleY(1);
 }
 
-.model-card:hover {
+.model-card:hover,
+.model-card:focus {
   border-color: var(--accent);
+  outline-color: var(--accent);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px var(--shadow);
 }
@@ -470,9 +474,52 @@ tr:last-child td {
   gap: 16px;
 }
 
+.blog-track-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.blog-track-wrapper::before,
+.blog-track-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 140px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.blog-track-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg-color) 0%, transparent 100%);
+}
+
+.blog-track-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg-color) 0%, transparent 100%);
+}
+
+.blog-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  animation: blog-scroll 35s linear infinite;
+}
+
+.blog-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes blog-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 .blog-item {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
   gap: 20px;
   background: var(--surface-color);
   padding: 24px 28px;
@@ -483,6 +530,10 @@ tr:last-child td {
   transition: border-color 0.2s, background 0.3s, transform 0.2s, box-shadow 0.3s;
   position: relative;
   overflow: hidden;
+  width: 420px;
+  height: 200px;
+  flex-shrink: 0;
+  box-sizing: border-box;
 }
 
 .blog-item::before {
@@ -501,8 +552,10 @@ tr:last-child td {
   transform: scaleY(1);
 }
 
-.blog-item:hover {
+.blog-item:hover,
+.blog-item:focus {
   border-color: var(--accent);
+  outline-color: var(--accent);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px var(--shadow);
 }
@@ -853,6 +906,102 @@ tr:last-child td {
 }
 
 
+.github-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: 1px solid var(--border-color);
+  background: var(--surface-color);
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+
+.github-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.github-btn i {
+  font-size: 1.1rem;
+}
+
+.info-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.info-card {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  padding: 28px 32px;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.info-card-title {
+  font-family: "Inter", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin: 0 0 16px 0;
+}
+
+.info-card p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 300;
+  margin: 0 0 12px 0;
+  line-height: 1.7;
+  transition: color 0.3s;
+}
+
+.info-card p:last-child {
+  margin-bottom: 0;
+}
+
+.info-card strong {
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+.info-list {
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.8;
+  padding-left: 20px;
+  margin: 0 0 12px 0;
+}
+
+.info-list:last-child {
+  margin-bottom: 0;
+}
+
+.info-card code {
+  font-family: monospace;
+  font-size: 0.9em;
+  background: var(--hover-bg);
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: var(--text-main);
+}
+
+.manbot-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
 footer {
   padding: 60px 0;
   font-size: 0.9rem;
@@ -888,6 +1037,28 @@ footer::before {
   .nav-links {
     display: none;
   }
+
+  nav {
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 20px;
+    gap: 8px;
+  }
+
+  .nav-right {
+    position: relative;
+    left: auto;
+    transform: none;
+  }
+
+  .nav-logo-img,
+  [data-theme="dark"] .nav-logo-dark {
+    height: 4rem;
+  }
+  header.hero {
+    padding-top: 260px;
+  }
+
   .hero h1 {
     font-size: 3rem;
   }
