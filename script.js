@@ -129,10 +129,17 @@ async function renderBlogs() {
     }
   }
 
-  container.innerHTML =
-    loadedCount > 0
-      ? html
-      : '<div style="padding: 20px; text-align:center;">No publications found.</div>';
+  if (loadedCount === 0) {
+    container.innerHTML = '<div style="padding: 20px; text-align:center;">No publications found.</div>';
+    return;
+  }
+
+  container.innerHTML = `
+    <div class="blog-track-wrapper">
+      <div class="blog-track">
+        ${html}${html}
+      </div>
+    </div>`;
 }
 
 function openBlog(file) {
@@ -195,8 +202,8 @@ async function loadAllMembers() {
 async function loadTeamMembers() {
   try {
     const [teamsRes, membersRes] = await Promise.all([
-      fetch("src/teams.json"),
-      fetch("src/members.json"),
+      fetch("src/teams.json?v=" + Date.now()),
+      fetch("src/members.json?v=" + Date.now()),
     ]);
 
     if (!teamsRes.ok) throw new Error("Failed to load teams.json");
@@ -290,6 +297,83 @@ function renderTeamContent() {
   document.getElementById("modal-content").innerHTML = `
     <h2 class="modal-title">Meet the Team</h2>
     <div class="team-sections">${html}${viewAllHtml}</div>`;
+}
+
+function openManBot() {
+  document.getElementById("modal-content").innerHTML = `
+    <div class="manbot-header">
+      <h2 class="modal-title" style="margin: 0;">ManBot</h2>
+      <a href="https://github.com/OpenDih/Manbot" target="_blank" class="github-btn">
+        <i class="fa-brands fa-github"></i> View on GitHub
+      </a>
+    </div>
+
+    <div class="info-cards">
+      <div class="info-card">
+        <p>The Discord bot that acts as the official interface for ManGPT, developed by Team OpenDIH. ManBot is specifically trained on the anonymized chat messages from Manware Discord server.</p>
+        <p style="color: var(--accent); font-size: 0.9rem; font-weight: 400;">The bot is currently under development.</p>
+      </div>
+
+      <div class="info-card">
+        <h3 class="info-card-title">Contribution Guidelines</h3>
+        <ol class="info-list">
+          <li>Fork this repository first. <em>(This is for safety of the repo for any breaking changes.)</em></li>
+          <li>Clone your forked repository to your local machine.</li>
+          <li>Run the requirements file: <code>pip install -r requirements.txt</code></li>
+          <li>Create a new branch for your feature or bug fix.</li>
+          <li>Make your changes. Test it locally before creating a pull request.</li>
+          <li>Make a pull request to parent repository <code>OpenDih/ManBot</code></li>
+          <li>Describe the changes made and why they're needed in the pull request description.</li>
+          <li>Wait for review from the Bot Lead.</li>
+        </ol>
+      </div>
+
+      <div class="info-card">
+        <h3 class="info-card-title">Guide for Issues</h3>
+        <p>When reporting issues, please include:</p>
+        <ul class="info-list">
+          <li>Detailed description of the problem</li>
+          <li>Steps to reproduce</li>
+          <li>Expected vs Actual behavior</li>
+          <li>Environment details (Python version, etc.)</li>
+        </ul>
+      </div>
+
+      <div class="info-card">
+        <h3 class="info-card-title">Troubleshooting</h3>
+        <p><strong>Bot won't start:</strong></p>
+        <ul class="info-list">
+          <li>Check if <code>.env</code> file exists and contains valid tokens</li>
+          <li>Verify Discord token has proper permissions</li>
+          <li>Ensure Python version is 3.8+</li>
+        </ul>
+        <p><strong>Bot not responding:</strong></p>
+        <ul class="info-list">
+          <li>Check if bot has message permissions in the channel</li>
+          <li>Verify the ManGPT API endpoint is accessible</li>
+          <li>Check bot is mentioned or replied to correctly</li>
+        </ul>
+        <p><strong>Connection issues:</strong></p>
+        <ul class="info-list">
+          <li>The bot includes automatic retry logic for connection problems</li>
+          <li>Wait for exponential backoff to complete — it will attempt 5 times to reconnect</li>
+        </ul>
+      </div>
+
+      <div class="info-card">
+        <h3 class="info-card-title">Support</h3>
+        <ul class="info-list">
+          <li>Check existing issues for similar problems</li>
+          <li>Create an issue in the repository, following the issues guideline</li>
+          <li>Contact the Bot Lead <strong>@atshayk</strong> directly for any pressing matters</li>
+        </ul>
+      </div>
+    </div>
+    <br><br>
+  `;
+
+  document.getElementById("modal-overlay").classList.add("active");
+  document.body.style.overflow = "hidden";
 }
 
 function closeModal() {
